@@ -14,7 +14,7 @@ const RepoList = ({ repos, page, onPageChange, owner }) => {
             <Link
               to={`/repos/${owner}/${repo.name}`}
               onClick={(e) => {
-                console.log('Link clicked', repo.name);
+//                 console.log('Link clicked', repo.name);
                 console.log('Navigation path:', `/repos/${owner}/${repo.name}`);
               }}
               style={{ cursor: 'pointer', color: 'blue', textDecoration: 'underline' }}

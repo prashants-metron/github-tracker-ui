@@ -12,14 +12,33 @@ const Gists = ({ username }) => {
     }
   }, [username]);
 
+  if (!gists.length) {
+    return <p>No gists found for user <strong>{username}</strong>.</p>;
+  }
+
   return (
-    <div>
-      <h2>Gists</h2>
-      <ul>
-        {gists.map((gist) => (
-          <li key={gist.id}>{gist.description || "No description"}</li>
-        ))}
-      </ul>
+    <div className="space-y-4">
+      {gists.map((gist) => (
+        <div
+          key={gist.id}
+          className="bg-white p-4 rounded-xl shadow border border-gray-200"
+        >
+          <a
+            href={gist.html_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 font-semibold text-lg"
+          >
+            {gist.description || "No description"}
+          </a>
+          <p className="text-sm text-gray-600 mt-1">
+            📝 Files: {Object.keys(gist.files).join(", ")}
+          </p>
+          <p className="text-sm text-gray-500">
+            📅 Updated: {new Date(gist.updated_at).toLocaleString()}
+          </p>
+        </div>
+      ))}
     </div>
   );
 };
