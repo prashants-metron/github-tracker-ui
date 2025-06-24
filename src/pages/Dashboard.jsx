@@ -19,13 +19,25 @@ const Dashboard = () => {
 
   const fetchRepos = async (pg = 1) => {
     if (!username) return;
+
+    const cacheKey = `${username}-page-${pg}`;
+    const cached = sessionStorage.getItem(cacheKey);
+
+    if (cached) {
+      setRepos(JSON.parse(cached));
+      setPage(pg);
+      setFetched(true);
+      return;
+    }
+
     setLoading(true);
     setFetched(false);
     try {
       const res = await getRepos(username, pg, 10);
       setRepos(res.data);
+      sessionStorage.setItem(cacheKey, JSON.stringify(res.data)); // ✅ cache
       setPage(pg);
-      setSearchParams({ username, page: pg }); // ⬅️ also store page
+      setSearchParams({ username, page: pg });
     } catch (err) {
       console.error("Error fetching repos:", err);
     } finally {
@@ -33,6 +45,8 @@ const Dashboard = () => {
       setLoading(false);
     }
   };
+
+
 
 
   // 🟡 Auto-fetch if username is present on load
@@ -50,6 +64,8 @@ const Dashboard = () => {
   };
 
   const themeStyles = getThemeStyles(darkMode);
+
+
 
   return (
     <div style={themeStyles.wrapper}>
