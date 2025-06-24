@@ -19,26 +19,7 @@ const App = () => {
 
   return (
     <Router>
-      <div style={{ display: "flex" }}>
-{/*         <nav style={{ padding: 20, borderRight: "1px solid #ccc", minWidth: 200 }}> */}
-{/*           <h3>GitHub Tracker</h3> */}
-{/*           <input placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} /> */}
-{/*           <input placeholder="Owner" value={owner} onChange={(e) => setOwner(e.target.value)} /> */}
-{/*           <input placeholder="Repo" value={repo} onChange={(e) => setRepo(e.target.value)} /> */}
-{/*           <ul style={{ listStyle: "none", padding: 0 }}> */}
-{/*             <li><Link to="/repos">Repositories</Link></li> */}
-{/*             <li><Link to="/events">Events</Link></li> */}
-{/*             <li><Link to="/commit-activity">Commit Activity</Link></li> */}
-{/*             <li><Link to="/contributors">Contributors</Link></li> */}
-{/*             <li><Link to="/languages">Languages</Link></li> */}
-{/*             <li><Link to="/starred">Starred</Link></li> */}
-{/*             <li><Link to="/gists">Gists</Link></li> */}
-{/*             <li><Link to="/readme">Readme</Link></li> */}
-{/*             <li><Link to="/repo-details">Repo Details</Link></li> */}
-{/*           </ul> */}
-{/*         </nav> */}
 
-        <div style={{ padding: 20, flex: 1 }}>
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/repos/:owner/:repo" element={<RepoDashboard />} />            <Route path="/repos" element={<Repositories username={username} />} />
@@ -52,8 +33,6 @@ const App = () => {
             <Route path="/repo-details" element={<RepoDetails owner={owner} repo={repo} />} />
             <Route path="/" element={<Dashboard />} />
           </Routes>
-        </div>
-      </div>
     </Router>
   );
 };

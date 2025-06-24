@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const RepoList = ({ repos, page, onPageChange, owner }) => {
-  console.log('Repos:', repos);
+//   console.log('Repos:', repos);
   if (!repos.length) return <p>No repositories found.</p>;
 
   return (
